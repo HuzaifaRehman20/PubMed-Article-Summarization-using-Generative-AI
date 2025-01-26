@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PubMed Article Summarizer</title>
+    <style>
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+        @keyframes cartoonSlide {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #282c34;
+            background: linear-gradient(135deg, #74ebd5 0%, #9face6 100%);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #ffffff;
+            overflow: hidden;
+        }
+        .container {
+            background-color: #61dafb;
+            background: linear-gradient(135deg, #74ebd5 0%, #9face6 100%);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            border-radius: 12px;
+            width: 80%;
+            max-width: 800px;
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+            position: relative;
+            z-index: 1;
+        }
+        .logo {
+            color: #282c34;
+            font-size: 2.5em;
+            font-weight: bold;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border-bottom: 5px solid #282c34;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            color: #282c34;
+        }
+        textarea {
+            width: 100%;
+            padding: 15px;
+            font-size: 1em;
+            border-radius: 8px;
+            border: 2px solid #61dafb;
+            margin-bottom: 20px;
+            transition: border-color 0.3s ease;
+        }
+        textarea:focus {
+            border-color: #282c34;
+            outline: none;
+        }
+        input[type="submit"] {
+            background-color: #ff6347;
+            color: #ffffff;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #e5533d;
+            animation: bounce 0.5s;
+        }
+        .cartoon {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            width: 100px;
+            height: 100px;
+            background-size: cover;
+            animation: cartoonSlide 2s ease-out forwards;
+        }
+        .background-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #74ebd5 0%, #9face6 100%);
+            clip-path: circle(0% at 0% 100%);
+            animation: reveal 4s forwards;
+            z-index: 0;
+        }
+        @keyframes reveal {
+            0% {
+                clip-path: circle(0% at 0% 100%);
+            }
+            100% {
+                clip-path: circle(150% at 0% 100%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-animation"></div>
+    <div class="container">
+        <h1 class="logo">MedCare Text Summarizer</h1>
+        <form action="/summarize" method="post">
+            <label for="article"></label>
+            <textarea name="article" rows="10" cols="100" placeholder="Paste your article text here..."></textarea>
+            <input type="submit" value="Summarize">
+        </form>
+    </div>
+    <div class="cartoon"></div>
+</body>
+</html>
